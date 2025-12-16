@@ -28,9 +28,10 @@ class DataExtractor:
                 "local": config.RAW_DATA_DIR / "nyc_taxi_2023-01.parquet"
             },
             "csv": {
-                "url": "https://data.cityofnewyork.us/api/views/erm2-nwe9/rows.csv?accessType=DOWNLOAD",
-                "local": config.RAW_DATA_DIR / "nyc_311_complaints.csv"
-            },
+  "url": "https://data.cityofnewyork.us/resource/erm2-nwe9.csv?$limit=100000",
+  "local": "nyc_311_sample_100k.csv"
+}
+
             "weather": {
                 "url": "https://archive-api.open-meteo.com/v1/archive?latitude=40.71&longitude=-74.01&start_date=2020-01-01&end_date=2023-12-31&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=America/New_York",
                 "local": config.RAW_DATA_DIR / "nyc_weather.json"

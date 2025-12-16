@@ -5,7 +5,8 @@ __pycache__/
 
 # C extensions
 *.so
-
+data/
+.env
 # Distribution / packaging
 .Python
 build/
@@ -142,6 +143,7 @@ env/
 venv/
 ENV/
 env.bak/
+my_env/
 venv.bak/
 
 # Spyder project settings

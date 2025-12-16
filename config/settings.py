@@ -35,17 +35,16 @@ class Config:
     # WINDOWS SUPPORT
     # ----------------------
     if os.name == "nt":
-        SPARK_DIST_HOME = r"C:\spark\spark-3.5.7-bin-hadoop3"
-        JAVA_HOME_PATH = r"C:\Program Files\Eclipse Adoptium\jdk-11.0.29.7-hotspot"
+       SPARK_DIST_HOME = r"C:\spark\spark-3.5.7-bin-hadoop3"
+       JAVA_HOME_PATH = r"C:\Program Files\Eclipse Adoptium\jdk-11.0.29.7-hotspot"
+       HADOOP_HOME_PATH = r"C:\hadoop"  # Add this
 
-        os.environ.setdefault("SPARK_HOME", SPARK_DIST_HOME)
-        os.environ.setdefault("JAVA_HOME", JAVA_HOME_PATH)
-        os.environ["PATH"] = SPARK_DIST_HOME + r"\bin;" + os.environ.get("PATH", "")
+       os.environ.setdefault("SPARK_HOME", SPARK_DIST_HOME)
+       os.environ.setdefault("JAVA_HOME", JAVA_HOME_PATH)
+       os.environ.setdefault("HADOOP_HOME", HADOOP_HOME_PATH)  # Add this
 
-        SPARK_CONFIG["spark.sql.warehouse.dir"] = str(
-            OUTPUT_DIR / "spark-warehouse"
-        )
-
+       # Update PATH to include Hadoop bin first
+       os.environ["PATH"] = HADOOP_HOME_PATH + r"\bin;" + SPARK_DIST_HOME + r"\bin;" + os.environ.get("PATH", "")
     # ----------------------
     # ETL SETTINGS
     # ----------------------

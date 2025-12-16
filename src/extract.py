@@ -5,6 +5,7 @@ from loguru import logger
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from config.settings import config
+import os
 
 
 class DataExtractor:
@@ -42,6 +43,10 @@ class DataExtractor:
     # Spark Session
     # ----------------------
     def _create_spark_session(self) -> SparkSession:
+        # Ensure Hadoop environment is set
+        os.environ["HADOOP_HOME"] = "C:\\hadoop"
+        os.environ["PATH"] = os.environ["HADOOP_HOME"] + "\\bin;" + os.environ.get("PATH", "")
+
         spark = (
             SparkSession.builder
             .appName(config.SPARK_CONFIG.get("app.name", "ETL_Pipeline"))
@@ -51,7 +56,7 @@ class DataExtractor:
             .config("spark.sql.execution.arrow.pyspark.enabled", "true")
             .config("spark.sql.adaptive.enabled", "true")
             .config("spark.sql.shuffle.partitions", config.SPARK_CONFIG.get("spark.sql.shuffle.partitions", 2))
-            .config("spark.hadoop.io.native.lib", "false")  # Disable native Hadoop to avoid Windows errors
+            .config("spark.hadoop.mapreduce.fileoutputcommitter.algorithm.version", "2")
             .getOrCreate()
         )
         logger.info(f"✅ Spark session initialized (v{spark.version})")

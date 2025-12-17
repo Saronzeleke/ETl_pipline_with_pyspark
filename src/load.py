@@ -4,17 +4,15 @@ from loguru import logger
 from pyspark.sql import DataFrame
 from config.settings import config
 
-
 class DuckDBLoader:
     """
     DuckDB Loader for ETL pipeline.
     Responsibilities:
       - Write Spark DataFrames to DuckDB
-      - Export aggregated tables to Parquet
+      - Export aggregated tables to Parquet (to separate paths to avoid locks)
       - Create analytical views
       - List tables
     """
-
     def __init__(self):
         self.db_path = config.DUCKDB_PATH
         self.conn = self._init_duckdb()
@@ -49,11 +47,10 @@ class DuckDBLoader:
         """Export DuckDB table to Parquet"""
         try:
             if not export_path:
-                export_path = config.PROCESSED_DATA_DIR / f"{table_name}.parquet"
+                export_path = config.PROCESSED_DATA_DIR / f"duckdb_{table_name}.parquet"
             else:
                 export_path = Path(export_path)
                 export_path.parent.mkdir(parents=True, exist_ok=True)
-
             self.conn.execute(f"COPY {table_name} TO '{str(export_path)}' (FORMAT PARQUET)")
             logger.info(f"✅ Exported '{table_name}' to Parquet → {export_path}")
         except Exception as e:
@@ -65,9 +62,9 @@ class DuckDBLoader:
         try:
             self.conn.execute("""
                 CREATE OR REPLACE VIEW vw_daily_revenue AS
-                SELECT pickup_date, SUM(daily_revenue) AS total_revenue
+                SELECT pickup_date, pickup_borough, SUM(daily_revenue) AS total_revenue
                 FROM daily_aggregations
-                GROUP BY pickup_date
+                GROUP BY pickup_date, pickup_borough
                 ORDER BY pickup_date
             """)
             self.conn.execute("""

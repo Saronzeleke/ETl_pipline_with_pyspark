@@ -2,24 +2,21 @@ import os
 from pathlib import Path
 from loguru import logger
 
-
 class Config:
     # ----------------------
     # PROJECT PATHS
     # ----------------------
     BASE_DIR = Path(__file__).parent.parent.parent.resolve()
-    DATA_DIR = BASE_DIR / "ETl_pipline_with_pyspark/data"
+    DATA_DIR = BASE_DIR / "ETL_PIPLINE_WITH_PYSPARK/data"
     RAW_DATA_DIR = DATA_DIR / "raw"
     PROCESSED_DATA_DIR = DATA_DIR / "processed"
     OUTPUT_DIR = DATA_DIR / "output"
-
     # ----------------------
     # DUCKDB
     # ----------------------
     DUCKDB_PATH = OUTPUT_DIR / "analytics.db"
-
     # ----------------------
-    # SPARK CONFIG (USED BY extractor)
+    # SPARK CONFIG
     # ----------------------
     SPARK_CONFIG = {
         "app.name": "ETL_Pipeline",
@@ -30,21 +27,18 @@ class Config:
         "spark.sql.shuffle.partitions": "2",
         "spark.serializer": "org.apache.spark.serializer.KryoSerializer",
     }
-
     # ----------------------
-    # WINDOWS SUPPORT
+    # WINDOWS SUPPORT (consolidated here)
     # ----------------------
     if os.name == "nt":
-       SPARK_DIST_HOME = r"C:\spark\spark-3.5.7-bin-hadoop3"
-       JAVA_HOME_PATH = r"C:\Program Files\Eclipse Adoptium\jdk-11.0.29.7-hotspot"
-       HADOOP_HOME_PATH = r"C:\hadoop"  # Add this
-
-       os.environ.setdefault("SPARK_HOME", SPARK_DIST_HOME)
-       os.environ.setdefault("JAVA_HOME", JAVA_HOME_PATH)
-       os.environ.setdefault("HADOOP_HOME", HADOOP_HOME_PATH)  # Add this
-
-       # Update PATH to include Hadoop bin first
-       os.environ["PATH"] = HADOOP_HOME_PATH + r"\bin;" + SPARK_DIST_HOME + r"\bin;" + os.environ.get("PATH", "")
+        SPARK_HOME = r"C:\spark\spark-3.5.7-bin-hadoop3"
+        JAVA_HOME = r"C:\Program Files\Eclipse Adoptium\jdk-11.0.29.7-hotspot"
+        HADOOP_HOME = r"C:\hadoop"
+        os.environ["SPARK_HOME"] = SPARK_HOME
+        os.environ["JAVA_HOME"] = JAVA_HOME
+        os.environ["HADOOP_HOME"] = HADOOP_HOME
+        os.environ["PATH"] = f"{HADOOP_HOME}\\bin;{SPARK_HOME}\\bin;{os.environ.get('PATH', '')}"
+        os.environ["HADOOP_USER_NAME"] = "admin"  # Bypass permissions
     # ----------------------
     # ETL SETTINGS
     # ----------------------
@@ -52,7 +46,6 @@ class Config:
         "enable_prefect": True,
         "log_level": "INFO",
     }
-
     # ----------------------
     # INIT
     # ----------------------
@@ -74,6 +67,5 @@ class Config:
         logger.info(f"RAW_DATA_DIR: {self.RAW_DATA_DIR}")
         logger.info(f"DUCKDB_PATH: {self.DUCKDB_PATH}")
 
-
-# Global config instance (USED EVERYWHERE)
+# Global config instance
 config = Config()

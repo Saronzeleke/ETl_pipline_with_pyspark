@@ -1,0 +1,15 @@
+# models/sources.yml
+version: 2
+sources:
+  - name: pipeline_output
+    description: "Raw output from PySpark ETL pipeline"
+    schema: main
+    tables:
+      - name: daily_aggregations
+        description: "Daily trips, revenue, weather by borough"
+      - name: hourly_patterns
+        description: "Hourly demand and fare patterns"
+      - name: vendor_performance
+        description: "Vendor-level KPIs"
+      - name: vw_daily_revenue      
+      - name: vw_vendor_summary

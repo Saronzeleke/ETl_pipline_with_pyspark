@@ -1,8 +1,0 @@
-version: 2
-sources:
-  - name: pipeline_output
-    schema: main
-    tables:
-      - name: daily_aggregations
-      - name: hourly_patterns
-      - name: vendor_performance

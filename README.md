@@ -21,33 +21,32 @@ The system enables dynamic pricing strategies and optimized fleet allocation dur
 Pipeline Architecture
 ```mermaid
 graph TD
-    %% Define Nodes
-    subgraph Sources [Data Sources]
-        DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
+
+    subgraph Sources["Data Sources"]
+        DS["Parquet - Trips | CSV - Zones | JSON - Weather"]
     end
-    subgraph Processing [PySpark ETL]
-        ETL[Extract<br/>Clean & Enrich<br/>Integrate<br/>Aggregate]
+
+    subgraph Processing["PySpark ETL"]
+        ETL["Extract → Clean & Enrich → Integrate → Aggregate"]
     end
-    subgraph Storage [DuckDB & dbt]
-        DBT[Load Aggregates<br/>Create Views<br/>dbt Models<br/>Export Parquet]
+
+    subgraph Storage["DuckDB & dbt"]
+        DBT["Load Aggregates → Create Views → dbt Models → Export Parquet"]
     end
-    subgraph Orchestration [Orchestration]
-        PRE[Prefect Flow<br/>- Orchestrate ETL<br/>- Schedule Runs]
+
+    subgraph Orchestration["Orchestration"]
+        PRE["Prefect Flow - Orchestrate ETL - Schedule Runs"]
     end
-    subgraph Analytics [Visualization]
-        PBI[Power BI<br/>- Interactive Dashboard]
+
+    subgraph Analytics["Visualization"]
+        PBI["Power BI - Interactive Dashboard"]
     end
-    %% Connections
+
     DS --> ETL
     ETL --> DBT
     ETL -.-> PRE
     DBT --> PBI
-    %% Styling
-    style Sources fill:#f9f,stroke:#333,stroke-width:2px
-    style Processing fill:#bbf,stroke:#333,stroke-width:2px
-    style Storage fill:#bfb,stroke:#333,stroke-width:2px
-    style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
-    style Analytics fill:#dfd,stroke:#333,stroke-width:2px
+
 
 **Technology Stack**
 

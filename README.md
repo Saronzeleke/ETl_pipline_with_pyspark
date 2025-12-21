@@ -20,20 +20,61 @@ The system enables dynamic pricing strategies and optimized fleet allocation dur
 
 Pipeline Architecture
 
-+-------------------+     +-------------------+     +-------------------+
-|   Data Sources    |     |   PySpark ETL     |     |   DuckDB & dbt    |
-| - Parquet (Trips) | --> | - Extract         | --> | - Load Aggregates |
-| - CSV (Zones)     |     | - Clean & Enrich  |     | - Create Views    |
-| - JSON (Weather)  |     | - Integrate       |     | - dbt Models      |
-+-------------------+     | - Aggregate       |     | - Export Parquet  |
-                          +-------------------+     +-------------------+
-                                       |                        |
-                                       v                        v
-                          +-------------------+     +-------------------+
-                          |   Prefect Flow    |     |   Power BI        |
-                          | - Orchestrate ETL |     | - Interactive     |
-                          | - Schedule Runs   |     |   Dashboard       |
-                          +-------------------+     +-------------------+
+is this converted to archture in redme by it self answer in short  "graph TD
+
+    %% Define Nodes
+
+    subgraph Sources [Data Sources]
+
+        DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
+
+    end
+
+    subgraph Processing [PySpark ETL]
+
+        ETL[Extract<br/>Clean & Enrich<br/>Integrate<br/>Aggregate]
+
+    end
+
+    subgraph Storage [DuckDB & dbt]
+
+        DBT[Load Aggregates<br/>Create Views<br/>dbt Models<br/>Export Parquet]
+
+    end
+
+    subgraph Orchestration [Orchestration]
+
+        PRE[Prefect Flow<br/>- Orchestrate ETL<br/>- Schedule Runs]
+
+    end
+
+    subgraph Analytics [Visualization]
+
+        PBI[Power BI<br/>- Interactive Dashboard]
+
+    end
+
+    %% Connections
+
+    DS --> ETL
+
+    ETL --> DBT
+
+    ETL -.-> PRE
+
+    DBT --> PBI
+
+    %% Styling
+
+    style Sources fill:#f9f,stroke:#333,stroke-width:2px
+
+    style Processing fill:#bbf,stroke:#333,stroke-width:2px
+
+    style Storage fill:#bfb,stroke:#333,stroke-width:2px
+
+    style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
+
+    style Analytics fill:#dfd,stroke:#333,stroke-width:2px"
 
 **Technology Stack**
 

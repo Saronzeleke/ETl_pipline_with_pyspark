@@ -49,7 +49,7 @@ graph TD
     style Storage fill:#bfb,stroke:#333,stroke-width:2px
     style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
     style Analytics fill:#dfd,stroke:#333,stroke-width:2px
-
+```
 
 **Technology Stack**
 
@@ -94,6 +94,7 @@ ETL_PIPLINE_WITH_PYSPARK/
 │   ├── models/
 
 │   │   └── marts/daily_weather_impacts.sql
+
         soucrces.yml
 
 │   └── dbt_project.yml
@@ -269,7 +270,9 @@ dbt docs serve  # View at http://localhost:8000
 # Key dbt Models
 
 sql
--- models/marts/dashboard_ready.sql
+
+**-- models/marts/dashboard_ready.sql**
+
 {{ config(materialized='table') }}
 
 SELECT
@@ -284,6 +287,7 @@ SELECT
     END as precipitation_severity,
     -- Business metric: Revenue opportunity
     total_revenue * 0.15 as estimated_pricing_opportunity
+
 FROM {{ ref('stg_trips_with_weather') }}
 
 # Data Quality Framework
@@ -291,6 +295,7 @@ FROM {{ ref('stg_trips_with_weather') }}
 yaml
 
 # dbt/tests/schema_tests.yml
+
 version: 2
 
 models:
@@ -460,8 +465,6 @@ DuckDB Guides: https://duckdb.org/docs/guides/
 dbt Best Practices: https://docs.getdbt.com/guides/best-practices
 
 Project Status: ✅ Production Ready
-
-Pipeline Version: 2.1
 
 Last Updated: December 2025
 

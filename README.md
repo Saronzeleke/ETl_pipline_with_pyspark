@@ -49,7 +49,7 @@ graph TD
     style Storage fill:#bfb,stroke:#333,stroke-width:2px
     style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
     style Analytics fill:#dfd,stroke:#333,stroke-width:2px
-
+```
 
 **Technology Stack**
 

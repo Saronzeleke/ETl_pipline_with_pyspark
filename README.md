@@ -325,35 +325,44 @@ models:
 
 **Layout:** Clean, grid-based with consistent spacing
 
-**Visual 1: Executive Summary**
+### 📊 Executive Summary Dashboard
 
-C:\Users\admin\ETl_pipline_with_pyspark\docs\fv4.png
+![Executive Summary](docs/fv4.png)
 
-# Key Metrics Card showing total revenue and weather impact percentage
+
+### 🌧️ Revenue vs Weather Correlation
 
 Visual 2: Revenue-Weather Correlation
-
-C:\Users\admin\ETl_pipline_with_pyspark\docs\mk2.png
 
 ![Revenue Weather](docs/mk2.png)
 
 Dual-axis chart showing daily revenue vs. precipitation with trend analysis
 
-Visual 3: Business Impact Analysis
+### 📉 Business Impact Waterfall
 
-C:\Users\admin\ETl_pipline_with_pyspark\docs\fk52.png
+![Revenue Loss Waterfall](docs/fk52.png)
 
 Waterfall chart quantifying revenue loss across precipitation severity levels
 
-Visual 4: Borough Sensitivity Matrix
-
-C:\Users\admin\ETl_pipline_with_pyspark\docs\fv2.png
+### 🧭 Visual 4: Borough Sensitivity Matrix
+![Borough Sensitivity Matrix](docs/fv2.png)
 
 Matrix with conditional formatting showing borough-specific weather impact
 
-Visual 5: Rainfall vs. Revenue Correlation
+### 🌧️ Visual 5: Rainfall vs. Revenue Correlation
+![Rainfall vs Revenue](docs/fk52.png)
 
-C:\Users\admin\ETl_pipline_with_pyspark\docs\fk52.png
+### ⏱️ Visual 6: Hourly Fare Patterns by Day of Week
+![Hourly Fare by Day](docs/hourly_fare_by_day.png)
+
+Line chart showing average fare variation by pickup hour across days of the week,
+
+highlighting peak-hour and weekday/weekend behavior.
+
+visual 7: Hourly Fare Patterns by Day of Week
+
+![Hourly Fare by Day](docs/daily_aggregation.png)
+
 
 *Scatter plot with trend line and quadrant analysis (R² = 0.67)*
 

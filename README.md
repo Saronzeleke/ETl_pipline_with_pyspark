@@ -336,7 +336,7 @@ Dual-axis chart showing daily revenue vs. precipitation with trend analysis
 
 ### 📉 Business Impact Waterfall
 
-![Revenue Loss Waterfall](docs/fk52.png)
+![Revenue Loss Waterfall](docs/fv5.png)
 
 Waterfall chart quantifying revenue loss across precipitation severity levels
 
@@ -348,6 +348,7 @@ Matrix with conditional formatting showing borough-specific weather impact
 ### 🌧️ Visual 5: Rainfall vs. Revenue Correlation
 ![Rainfall vs Revenue](docs/rain.png)
 
+![Revenue Loss Waterfall](docs/fv3.png)
 ### ⏱️ Visual 6: Hourly Fare Patterns by Day of Week
 ![Hourly Fare by Day](docs/date.png)
 

@@ -26,29 +26,44 @@ graph TD
     subgraph Sources [Data Sources]
         DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
     end
-    subgraph Processing [PySpark ETL]
-        ETL[Extract<br/>Clean & Enrich<br/>Integrate<br/>Aggregate]
+
+    subgraph Processing [ETL & Data Quality]
+        ETL[Extract → Clean & Enrich → Transform → Aggregate<br/>Data Validation & Error Handling]
     end
+
     subgraph Storage [DuckDB & dbt]
-        DBT[Load Aggregates<br/>Create Views<br/>dbt Models<br/>Export Parquet]
+        DBT[Load Aggregates → Create Views → dbt Models<br/>Incremental Loads & Metadata Tracking]
     end
-    subgraph Orchestration [Orchestration]
-        PRE[Prefect Flow<br/>- Orchestrate ETL<br/>- Schedule Runs]
+
+    subgraph Orchestration [Workflow Management]
+        PRE[Prefect Flow → Schedule & Monitor ETL Runs<br/>Retries, Alerts & Logging]
     end
+
+    subgraph Monitoring [Observability]
+        MON[Metrics & Logs → Data Quality Dashboards]
+    end
+
     subgraph Analytics [Visualization]
-        PBI[Power BI<br/>- Interactive Dashboard]
+        PBI[Power BI → Interactive Executive Dashboards]
     end
+
     %% Connections
     DS --> ETL
     ETL --> DBT
-    ETL -.-> PRE
+    PRE --> ETL
     DBT --> PBI
+    ETL --> MON
+    PRE --> MON
+    DBT --> MON
+
     %% Styling
     style Sources fill:#f9f,stroke:#333,stroke-width:2px
     style Processing fill:#bbf,stroke:#333,stroke-width:2px
     style Storage fill:#bfb,stroke:#333,stroke-width:2px
     style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
+    style Monitoring fill:#ffd,stroke:#333,stroke-width:2px
     style Analytics fill:#dfd,stroke:#333,stroke-width:2px
+
 ```
 
 **Technology Stack**
@@ -324,7 +339,7 @@ models:
 
 ### 📊 Executive Summary Dashboard
 
-![Executive Summary](docs/fv4.png)
+![Executive Summary](docs/summary.png)
 
 
 ### 🌧️ Revenue vs Weather Correlation

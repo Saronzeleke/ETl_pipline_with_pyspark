@@ -349,14 +349,11 @@ Matrix with conditional formatting showing borough-specific weather impact
 ![Rainfall vs Revenue](docs/rain.png)
 
 ### ⏱️ Visual 6: Hourly Fare Patterns by Day of Week
-![Hourly Fare by Day](docs/hourly_fare_by_day.png)
+![Hourly Fare by Day](docs/date.png)
 
 Line chart showing average fare variation by pickup hour across days of the week,
 
 highlighting peak-hour and weekday/weekend behavior.
-
-![Hourly Fare by Day](docs/date.png)
-
 ### visual 7: Hourly Fare Patterns by Day of Week
 
 ![Hourly Fare by Day](docs/daily_aggregation.png)

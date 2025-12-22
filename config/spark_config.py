@@ -5,7 +5,6 @@ from pyspark.sql import SparkSession
 from config.settings import config
 
 def create_spark_session(app_name=None):
-    # JAVA_HOME already set in config
     spark_conf = config.SPARK_CONFIG.copy()
     if app_name:
         spark_conf["app.name"] = app_name

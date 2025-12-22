@@ -22,47 +22,6 @@ Pipeline Architecture
 
 ```mermaid
 graph TD
-    %% Data Sources
-    subgraph Sources
-        DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
-    end
-
-    %% ETL & Transformations
-    subgraph ETL [ETL Pipeline]
-        EXTRACT[Extract Data]
-        TRANSFORM[Clean → Enrich → Aggregate → Feature Engineering]
-        LOAD[Load to DuckDB / dbt]
-    end
-
-    %% Orchestration
-    subgraph ORCH [Pipeline Orchestration]
-        PREFECT[Prefect Flow<br/>Schedules ETL<br/>Retries & Alerts]
-    end
-
-    %% Analytics
-    subgraph ANALYTICS
-        PBI[Power BI Dashboards<br/>Interactive KPIs & Drilldowns]
-    end
-
-    %% Monitoring
-    subgraph MON [Monitoring & Observability]
-        LOGS[Data Quality Metrics<br/>Pipeline Logs & Alerts]
-    end
-
-    %% Connections
-    DS --> EXTRACT
-    EXTRACT --> TRANSFORM
-    TRANSFORM --> LOAD
-    PREFECT --> EXTRACT
-    PREFECT --> TRANSFORM
-    PREFECT --> LOAD
-    LOAD --> PBI
-    EXTRACT --> LOGS
-    TRANSFORM --> LOGS
-    LOAD --> LOGS
-    PBI --> LOGS
-
-graph TD
     %% Define Nodes
     subgraph Sources [Data Sources]
         DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
@@ -90,6 +49,51 @@ graph TD
     style Storage fill:#bfb,stroke:#333,stroke-width:2px
     style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
     style Analytics fill:#dfd,stroke:#333,stroke-width:2px
+```
+
+```mermaid
+graph TD
+    %% Data Pipeline Architecture
+    subgraph Sources [Data Sources]
+        DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
+    end
+    
+    subgraph Processing [PySpark ETL Processing]
+        ETL[Extract<br/>Clean & Enrich<br/>Integrate<br/>Aggregate]
+    end
+    
+    subgraph Storage [DuckDB Analytical Database]
+        DBT[Load Aggregates<br/>Create Views<br/>dbt Models<br/>Export Parquet]
+    end
+    
+    subgraph Orchestration [Pipeline Orchestration]
+        PRE[Prefect Flow<br/>- Orchestrate ETL<br/>- Schedule Runs<br/>- Error Handling]
+    end
+    
+    subgraph Analytics [Business Intelligence]
+        PBI[Power BI<br/>- Interactive Dashboard<br/>- Executive Reports<br/>- Real-time Analytics]
+    end
+    
+    %% Connections with labels
+    DS -->|"Raw Data Ingestion"| ETL
+    ETL -->|"Transformed & Aggregated Data"| DBT
+    ETL -.->|"Workflow Control"| PRE
+    DBT -->|"Analytical Views & Models"| PBI
+    
+    %% Optional: Add Business Outcomes
+    subgraph Outcomes [Business Outcomes]
+        OUT1[Revenue Optimization<br/>Weather Impact Analysis<br/>Strategic Planning]
+    end
+    
+    PBI -->|"Data-Driven Insights"| OUT1
+    
+    %% Styling with professional colors
+    style Sources fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#0D47A1
+    style Processing fill:#FFF3E0,stroke:#EF6C00,stroke-width:2px,color:#E65100
+    style Storage fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20
+    style Orchestration fill:#F3E5F5,stroke:#7B1FA2,stroke-width:2px,color:#4A148C
+    style Analytics fill:#E0F2F1,stroke:#00695C,stroke-width:2px,color:#004D40
+    style Outcomes fill:#FFEBEE,stroke:#C62828,stroke-width:2px,color:#B71C1C
 ```
 
 **Technology Stack**

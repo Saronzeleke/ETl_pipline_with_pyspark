@@ -1,6 +1,6 @@
-# NYC Taxi Analytics: Weather Impact on Revenue
+**ETL Pipeline with Pyspark For Big Data Assignment(project)**
 
-**ETL Pipeline with Advanced Analytics**
+# NYC Taxi Analytics: Weather Impact on Revenue
 
 📊 Executive Summary
 
@@ -243,25 +243,24 @@ python workflow/pipeline.py
 🏆 BONUS: dbt Transformation Layer
 
 # Production Implementation
-bash
 
-# Navigate to dbt project
+**Navigate to dbt project**
 
 cd nyc_taxi_dbt/
 
-# Validate connection
+**Validate connection**
 
 dbt debug
 
-# Execute transformations
+**Execute transformations**
 
 dbt run --select +mart_dashboard
 
-# Run 25+ data quality tests
+**Run 25+ data quality tests**
 
 dbt test
 
-# Generate documentation
+**Generate documentation**
 
 dbt docs generate
 
@@ -292,9 +291,7 @@ FROM {{ ref('stg_trips_with_weather') }}
 
 # Data Quality Framework
 
-yaml
-
-# dbt/tests/schema_tests.yml
+**dbt/tests/schema_tests.yml**
 
 version: 2
 
@@ -359,7 +356,7 @@ Line chart showing average fare variation by pickup hour across days of the week
 
 highlighting peak-hour and weekday/weekend behavior.
 
-visual 7: Hourly Fare Patterns by Day of Week
+### visual 7: Hourly Fare Patterns by Day of Week
 
 ![Hourly Fare by Day](docs/daily_aggregation.png)
 

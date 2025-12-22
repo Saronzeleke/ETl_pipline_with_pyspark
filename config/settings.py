@@ -11,9 +11,6 @@ class Config:
     RAW_DATA_DIR = DATA_DIR / "raw"
     PROCESSED_DATA_DIR = DATA_DIR / "processed"
     OUTPUT_DIR = DATA_DIR / "output"
-    # ----------------------
-    # DUCKDB
-    # ----------------------
     DUCKDB_PATH = OUTPUT_DIR / "analytics.db"
     # ----------------------
     # SPARK CONFIG

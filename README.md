@@ -10,7 +10,7 @@ no data-driven framework to quantify losses or implement corrective strategies. 
  
 drivers and $1.5B in annual revenue.
 
-**Solution Delivered:**A resilient analytics pipeline processing 3,066,766 taxi trips integrated with 31 days of weather 
+**Solution Delivered:** A resilient analytics pipeline processing 3,066,766 taxi trips integrated with 31 days of weather 
 
 data, revealing that high-precipitation days cause 42% revenue decline ($2.3M monthly opportunity).
 

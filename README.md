@@ -325,10 +325,11 @@ models:
 
 ![Executive Summary](docs/summary.png)
 
+### 🌧️Precipitation Impact on Revenue Analysis
+
+![Revenue Loss Waterfall](docs/fv3.png)
 
 ### 🌧️ Revenue vs Weather Correlation
-
-Visual 2: Revenue-Weather Correlation
 
 ![Revenue Weather](docs/mk2.png)
 
@@ -348,14 +349,13 @@ Matrix with conditional formatting showing borough-specific weather impact
 ### 🌧️ Visual 5: Rainfall vs. Revenue Correlation
 ![Rainfall vs Revenue](docs/rain.png)
 
-![Revenue Loss Waterfall](docs/fv3.png)
 ### ⏱️ Visual 6: Hourly Fare Patterns by Day of Week
 ![Hourly Fare by Day](docs/date.png)
 
 Line chart showing average fare variation by pickup hour across days of the week,
 
 highlighting peak-hour and weekday/weekend behavior.
-### visual 7: Hourly Fare Patterns by Day of Week
+### ⏰ visual 7: Hourly Fare Patterns by Day of Week
 
 ![Hourly Fare by Day](docs/daily_aggregation.png)
 

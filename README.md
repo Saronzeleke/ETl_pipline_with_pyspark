@@ -328,7 +328,9 @@ models:
 ### 🌧️Precipitation Impact on Revenue Analysis
 
 ![Revenue Loss Waterfall](docs/fv3.png)
+The chart reveals the direct correlation between weather conditions and business performance, enabling data-driven 
 
+weather contingency planning and revenue forecasting.
 ### 🌧️ Revenue vs Weather Correlation
 
 ![Revenue Weather](docs/mk2.png)

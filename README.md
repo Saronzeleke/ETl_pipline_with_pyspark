@@ -347,7 +347,7 @@ Waterfall chart quantifying revenue loss across precipitation severity levels
 Matrix with conditional formatting showing borough-specific weather impact
 
 ### 🌧️ Visual 5: Rainfall vs. Revenue Correlation
-![Rainfall vs Revenue](docs/fk52.png)
+![Rainfall vs Revenue](docs/rain.png)
 
 ### ⏱️ Visual 6: Hourly Fare Patterns by Day of Week
 ![Hourly Fare by Day](docs/hourly_fare_by_day.png)
@@ -355,6 +355,8 @@ Matrix with conditional formatting showing borough-specific weather impact
 Line chart showing average fare variation by pickup hour across days of the week,
 
 highlighting peak-hour and weekday/weekend behavior.
+
+![Hourly Fare by Day](docs/date.png)
 
 ### visual 7: Hourly Fare Patterns by Day of Week
 
@@ -369,7 +371,7 @@ highlighting peak-hour and weekday/weekend behavior.
 
 **Cross-Filtering:** Click any visual to filter all related charts
 
-**Drill-Through:**Detailed analysis from borough → day → hour level
+**Drill-Through:** Detailed analysis from borough → day → hour level
 
 **Export Capability:** All visuals exportable for reporting
 
@@ -388,17 +390,17 @@ Temporal Patterns: Evening rush hour most severely impacted
 
 👥 Team Contributions
 
-Team Member	Role	               Key Deliverables	                             
+**Team Member	                        Key Deliverables**                        
 
-Saron Zeleke	                  Prefect orchestration, dbt models	   
+**Saron Zeleke	                  Prefect orchestration, dbt models**
 
-Elsa Abera	                      Data extraction, dbt exports, testing framework	   
+**Elsa Abera	                      Data extraction, dbt exports, testing framework**   
 
-Tigist Ashenafi	                  DuckDB implementation, Power BI dashboard	            
+**Tigist Ashenafi	                  DuckDB implementation, Power BI dashboard**            
 
-Danawit Tarkegn	             	  PySpark transformations, business logic	                 
+**Danawit Tarkegn	             	  PySpark transformations, business logic**	                 
 
-yenensh Dabaot                  setting,spark_config,documentation
+**Yenensh Dabaot                  setting,spark_config,documentation**
 
 # GitHub Metrics:
 

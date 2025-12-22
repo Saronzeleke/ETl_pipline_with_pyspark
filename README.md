@@ -184,7 +184,7 @@ python workflow/pipeline.py
 
 **PERFORMANCE:**
 
-• Extraction time: 45 seconds for 3M+ records
+• Extraction time: 50 seconds for 3M+ records
 
 • Cache hit rate: 95% on subsequent runs
 
@@ -334,6 +334,7 @@ C:\Users\admin\ETl_pipline_with_pyspark\docs\fv4.png
 Visual 2: Revenue-Weather Correlation
 
 C:\Users\admin\ETl_pipline_with_pyspark\docs\mk2.png
+![Revenue Weather](docs\mk2.png)
 
 Dual-axis chart showing daily revenue vs. precipitation with trend analysis
 

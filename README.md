@@ -22,48 +22,74 @@ Pipeline Architecture
 
 ```mermaid
 graph TD
+    %% Data Sources
+    subgraph Sources
+        DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
+    end
+
+    %% ETL & Transformations
+    subgraph ETL [ETL Pipeline]
+        EXTRACT[Extract Data]
+        TRANSFORM[Clean → Enrich → Aggregate → Feature Engineering]
+        LOAD[Load to DuckDB / dbt]
+    end
+
+    %% Orchestration
+    subgraph ORCH [Pipeline Orchestration]
+        PREFECT[Prefect Flow<br/>Schedules ETL<br/>Retries & Alerts]
+    end
+
+    %% Analytics
+    subgraph ANALYTICS
+        PBI[Power BI Dashboards<br/>Interactive KPIs & Drilldowns]
+    end
+
+    %% Monitoring
+    subgraph MON [Monitoring & Observability]
+        LOGS[Data Quality Metrics<br/>Pipeline Logs & Alerts]
+    end
+
+    %% Connections
+    DS --> EXTRACT
+    EXTRACT --> TRANSFORM
+    TRANSFORM --> LOAD
+    PREFECT --> EXTRACT
+    PREFECT --> TRANSFORM
+    PREFECT --> LOAD
+    LOAD --> PBI
+    EXTRACT --> LOGS
+    TRANSFORM --> LOGS
+    LOAD --> LOGS
+    PBI --> LOGS
+
+graph TD
     %% Define Nodes
     subgraph Sources [Data Sources]
         DS[Parquet - Trips<br/>CSV - Zones<br/>JSON - Weather]
     end
-
-    subgraph Processing [ETL & Data Quality]
-        ETL[Extract → Clean & Enrich → Transform → Aggregate<br/>Data Validation & Error Handling]
+    subgraph Processing [PySpark ETL]
+        ETL[Extract<br/>Clean & Enrich<br/>Integrate<br/>Aggregate]
     end
-
     subgraph Storage [DuckDB & dbt]
-        DBT[Load Aggregates → Create Views → dbt Models<br/>Incremental Loads & Metadata Tracking]
+        DBT[Load Aggregates<br/>Create Views<br/>dbt Models<br/>Export Parquet]
     end
-
-    subgraph Orchestration [Workflow Management]
-        PRE[Prefect Flow → Schedule & Monitor ETL Runs<br/>Retries, Alerts & Logging]
+    subgraph Orchestration [Orchestration]
+        PRE[Prefect Flow<br/>- Orchestrate ETL<br/>- Schedule Runs]
     end
-
-    subgraph Monitoring [Observability]
-        MON[Metrics & Logs → Data Quality Dashboards]
-    end
-
     subgraph Analytics [Visualization]
-        PBI[Power BI → Interactive Executive Dashboards]
+        PBI[Power BI<br/>- Interactive Dashboard]
     end
-
     %% Connections
     DS --> ETL
     ETL --> DBT
-    PRE --> ETL
+    ETL -.-> PRE
     DBT --> PBI
-    ETL --> MON
-    PRE --> MON
-    DBT --> MON
-
     %% Styling
     style Sources fill:#f9f,stroke:#333,stroke-width:2px
     style Processing fill:#bbf,stroke:#333,stroke-width:2px
     style Storage fill:#bfb,stroke:#333,stroke-width:2px
     style Orchestration fill:#fdb,stroke:#333,stroke-width:2px
-    style Monitoring fill:#ffd,stroke:#333,stroke-width:2px
     style Analytics fill:#dfd,stroke:#333,stroke-width:2px
-
 ```
 
 **Technology Stack**
